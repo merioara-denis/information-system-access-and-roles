@@ -86,7 +86,7 @@
 
 ##### В случаях успеха
 
-```seq
+```sequence-diagrams
 Frontend->Backend: POST: /user/register (RegisterUserRequest)
 note right of Backend: Реализует валидацию и регистрацию
 Backend->Frontend: Response 204
@@ -94,7 +94,7 @@ Backend->Frontend: Response 204
 
 ##### В случаях ошибки валидации
 
-```seq
+```sequence-diagrams
 Frontend->Backend: POST: /user/register (RegisterUserRequest)
 note right of Backend: Реализует валидацию и регистрацию
 Backend->Frontend: Response 400 (ApiErrorResponse)
@@ -102,10 +102,21 @@ Backend->Frontend: Response 400 (ApiErrorResponse)
 
 ##### В случаях внутренней ошибки
 
-```seq
+```sequence-diagrams
 Frontend->Backend: POST: /user/register (RegisterUserRequest)
 note right of Backend: Реализует валидацию и регистрацию
 Backend->Frontend: Response 500 (ApiErrorResponse)
+```
+
+### Дизайн решения
+
+```flowchart
+A[UsersController::register] -->|RegisterUserRequest| B(UsersService::register)
+B -->|RegisterUserRequest| C1(UsersRegisterService::validate)
+B -->|RegisterUserRequest| C2(UsersRegisterService::register)
+C1(UsersRegisterService::validate) -->|Boolean| B
+C2(UsersRegisterService::register) -->|Boolean| B
+B -->|ApiErrorResponse or Void| A
 ```
 
 ### Миграция данных
