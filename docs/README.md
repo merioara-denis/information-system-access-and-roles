@@ -10,3 +10,4 @@
 ## Оглавление
 
 - [Ответ с ошибкой (ApiErrorResponse)](./requirements-api-error-response.md)
+- [Регистрация пользователей](./requirements-register-users.md)
