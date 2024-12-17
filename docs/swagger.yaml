@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: Сервис системы доступы и роли
+  description: Описание сервиса
+  contact:
+    name: Denis Merioara
+    email: merioara.denis@gmail.com
+  version: 1.0.0
+externalDocs:
+  description: Документация
+  url: https://github.com/merioara-denis/information-system-access-and-roles/blob/main/docs/README.md
+servers:
+  - url: https://domain.org/api/v100
+tags:
+  - name: UsersController
+    description: Пользователи
+paths:
+  /users/register:
+    post:
+      tags:
+        - UsersController
+      summary: Регистрация нового пользователя
+      description: Регистрация нового пользователя
+      operationId: registerUsers
+      requestBody:
+        description: Регистрация нового пользователя
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterUserRequest"
+      responses:
+        "204":
+          description: Операция успешно выполнена
+        "400":
+          description: Ошибка при валидации данных
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+        "500":
+          description: Ошибка при добавление пользователя
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiErrorResponse"
+components:
+  schemas:
+    RegisterUserRequest:
+      type: object
+      required:
+        - email
+        - phone
+        - password
+        - name
+      properties:
+        email:
+          type: string
+          example: super.admin@domain.com
+        phone:
+          type: string
+          example: '+0123456789'
+        password:
+          type: string
+          example: super.admin
+        name:
+          type: string
+          example: First Last Middle Name
+    ApiErrorResponse:
+      type: object
+      required:
+        - traceId
+        - description
+        - content
+      properties:
+        traceId:
+          type: string
+          example: f2cc4774-d41b-4a96-be4e-281bb54e9a06
+        description:
+          type: string
+          example: Exception in thread "main"
+        content:
+          type: object
+          required:
+            - body
+          properties:
+            mode:
+              type: string
+              example: toast
+            data:
+              type: object
+              example: '{ entity: "user" }'
+            header:
+              type: string
+              example: error.default-title
+            body:
+              type: string
+              example: error.default-description
+            footer:
+              type: string
+              example: error.default-recommendation
