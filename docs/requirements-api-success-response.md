@@ -22,6 +22,7 @@
 #### ApiSuccessMode - Тип отображения
 
 - "toast" - Вывод уведомления в Toast (по умолчанию)
+- "notification" - Вывод уведомления в Notification
 
 #### ApiSuccessResponse 
 
