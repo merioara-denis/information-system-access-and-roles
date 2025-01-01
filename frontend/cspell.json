@@ -1,7 +1,14 @@
 {
   "version": "0.2",
   "language": "en,ru",
-  "import": ["@cspell/dict-ru_ru/cspell-ext.json"],
-  "words": [],
-  "flagWords": ["hte"]
+  "import": [
+    "@cspell/dict-ru_ru/cspell-ext.json"
+  ],
+  "words": [
+    "autodocs",
+    "Autodocs"
+  ],
+  "flagWords": [
+    "hte"
+  ]
 }
