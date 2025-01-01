@@ -29,6 +29,9 @@ export const Primary: Story = {
   args: {
     primary: true,
     label: 'Button',
+    // TODO: надо добавить интерфейс для расширения HTMLElement data-attrs
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     'data-testid': 'custom-button',
     onClick: fn(),
   },

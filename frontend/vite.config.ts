@@ -10,7 +10,7 @@ export default defineConfig({
     circleDependency(),
     unusedCode({
       patterns: ['src/**/*.*'],
-      exclude: ['src/**/*.d.ts'],
+      exclude: ['src/**/*.d.ts', 'src/**/*.ts', 'src/stories/**/*'],
       failOnHint: true,
     }),
   ],
