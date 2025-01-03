@@ -6,12 +6,15 @@
   "scripts": {
     "start": "vite",
     "dev": "storybook dev -p 6006",
+    "test-storybook": "npx test-storybook --coverage",
     "test": "eslint . --fix",
     "build": "tsc -b && vite build"
   },
   "dependencies": {
+    "@storybook/test-runner": "^0.21.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "uuid": "^11.0.3",
     "vite-plugin-circular-dependency": "^0.5.0"
   },
   "devDependencies": {
@@ -19,6 +22,7 @@
     "@cspell/dict-ru_ru": "^2.2.4",
     "@cspell/eslint-plugin": "^8.16.1",
     "@eslint/js": "^9.15.0",
+    "@faker-js/faker": "^9.3.0",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
     "@storybook/addon-onboarding": "^8.4.7",
@@ -26,6 +30,8 @@
     "@storybook/react": "^8.4.7",
     "@storybook/react-vite": "^8.4.7",
     "@storybook/test": "^8.4.7",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.5",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
