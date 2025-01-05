@@ -1,0 +1,1 @@
+export const ForgotPasswordForm = () => null;

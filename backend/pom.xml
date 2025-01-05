@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.0</version>
+		<version>3.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.domain</groupId>
-	<artifactId>AccessAndRoles</artifactId>
+	<groupId>com.domain</groupId>
+	<artifactId>access-and-roles</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>AccessAndRoles</name>
-	<description>Information system access and roles</description>
+	<description>AccessAndRoles</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

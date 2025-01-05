@@ -19,10 +19,9 @@
 
 ### Модели данных
 
-#### ApiErrorMode
+#### ApiErrorMode - Тип отображения
 
-- null
-- "toast"
+- "toast" - Вывод уведомления в Toast (по умолчанию)
 
 #### ApiErrorResponse 
 
