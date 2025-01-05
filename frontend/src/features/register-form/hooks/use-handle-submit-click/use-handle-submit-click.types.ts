@@ -1,6 +1,6 @@
-import { LoginFormProps } from '../../login-form.types';
+import { RegisterFormProps } from '../../register-form.types';
 
-export type UseHandleSubmitClickArgs = Pick<LoginFormProps, 'onFormSubmit'>;
+export type UseHandleSubmitClickArgs = Pick<RegisterFormProps, 'onFormSubmit'>;
 
 export type UseHandleSubmitClickResult = {
   handleSubmit: React.FormEventHandler<HTMLFormElement>;

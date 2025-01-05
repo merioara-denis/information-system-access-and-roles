@@ -1,6 +1,6 @@
 import React from 'react';
 import type { UseHandleSubmitClick } from './use-handle-submit-click.types';
-import type { LoginFormData } from '../../login-form.types';
+import type { RegisterFormData } from '../../register-form.types';
 
 export const useHandleSubmitClick: UseHandleSubmitClick = (args) => {
   const { onFormSubmit } = args;
@@ -16,7 +16,7 @@ export const useHandleSubmitClick: UseHandleSubmitClick = (args) => {
 
       const formData = new FormData(event.target as HTMLFormElement);
       const mapData = new Map(Array.from(formData?.entries?.()));
-      const objectData = Object.fromEntries(mapData) as LoginFormData;
+      const objectData = Object.fromEntries(mapData) as RegisterFormData;
 
       onFormSubmitRef.current(objectData);
     },
