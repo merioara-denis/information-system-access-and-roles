@@ -1,11 +1,12 @@
 /* eslint-disable max-lines */
+import _ from 'lodash';
 import { faker } from '@faker-js/faker';
-import { fn } from '@storybook/test';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, ReactRenderer, StoryObj } from '@storybook/react';
+import { fn, expect, userEvent, waitFor, within } from '@storybook/test';
 import type { RegisterFormData } from './register-form.types';
-import { expect, userEvent, waitFor, within } from '@storybook/test';
 
 import { RegisterForm } from './register-form.component';
+import { PlayFunction } from 'storybook/internal/types';
 
 const meta = {
   title: 'Features/RegisterForm',
@@ -49,17 +50,62 @@ const fillFields = async (
   }
 };
 
-export const Submit: Story = {
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-    const mock = createMock();
+const submitTest: PlayFunction<
+  ReactRenderer,
+  {
+    onFormSubmit: typeof fn;
+    loginUrl: string;
+    onLoginClick: typeof fn;
+  }
+> = async ({ canvasElement, args }) => {
+  const canvas = within(canvasElement);
+  const mock = createMock();
 
-    await fillFields(canvas, mock);
+  await fillFields(canvas, mock);
 
-    userEvent.click(canvas.getByTestId('login-form__submit-button'));
+  userEvent.click(canvas.getByTestId('login-form__submit-button'));
 
-    await waitFor(() => expect(args.onFormSubmit).toHaveBeenCalledWith(mock));
+  await waitFor(() => expect(args.onFormSubmit).toHaveBeenCalledWith(mock));
+};
+
+export const SubmitSuccess: Story = {
+  args: {
+    onFormSubmit: fn(() => {
+      return new Promise<ApiSuccessResponse>((...args) => {
+        const [resolve] = args;
+
+        _.debounce(() => {
+          resolve({
+            content: {
+              mode: 'message' as ApiNotificationMode,
+              body: 'Пользователь успешно зарегистрирован',
+            },
+          });
+        }, 1000)();
+      });
+    }),
   },
+  play: submitTest,
+};
+
+export const SubmitFail: Story = {
+  args: {
+    onFormSubmit: fn(() => {
+      return new Promise<ApiSuccessResponse>((...args) => {
+        const [, reject] = args;
+
+        _.debounce(() => {
+          reject({
+            content: {
+              mode: 'message' as ApiNotificationMode,
+              body: 'Пользователь успешно зарегистрирован',
+            },
+          });
+        }, 1000)();
+      });
+    }),
+  },
+  play: submitTest,
 };
 
 export const Reset: Story = {

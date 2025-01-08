@@ -9,7 +9,13 @@ createRoot(document.getElementById('root')!).render(
     <ConfigProvider>
       <p>Frontend</p>
       <Features.RegisterForm
-        onFormSubmit={console.log}
+        onFormSubmit={() => {
+          return Promise.resolve({
+            content: {
+              mode: 'message' as ApiNotificationMode,
+            },
+          });
+        }}
         loginUrl="http://domain.org/login-page"
         onLoginClick={console.log}
       />

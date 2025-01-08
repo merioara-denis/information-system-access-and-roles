@@ -7,7 +7,7 @@ export type RegisterFormData = {
 
 export type RegisterFormProps = {
   /** Обработчик отправки формы */
-  onFormSubmit: (data: RegisterFormData) => void;
+  onFormSubmit: (data: RegisterFormData) => Promise<ApiSuccessResponse>;
   /** Адрес страницы авторизации */
   loginUrl: string;
   /** Обработчик перехода на страницу авторизации */

@@ -1,31 +1,32 @@
 import React from 'react';
 import { Form } from 'antd';
 import * as UI from './ui';
-import type {
-  RegisterFormProps,
-  RegisterFormData,
-} from './register-form.types';
+import * as Hooks from './hooks';
+import * as Constants from './register-form.constants';
+import * as Types from './register-form.types';
 
-export const RegisterForm = React.memo<RegisterFormProps>((props) => {
+export const RegisterForm = React.memo<Types.RegisterFormProps>((props) => {
   const { onFormSubmit, loginUrl, onLoginClick } = props;
+  const { isProcess, handleSubmit } = Hooks.useHandleSubmitClick({
+    onFormSubmit,
+  });
 
   return (
-    <Form<RegisterFormData>
+    <Form<Types.RegisterFormData>
+      {...Constants.defaultFormProps}
       data-testid="login-form"
-      labelCol={{ span: 24 }}
-      wrapperCol={{ span: 24 }}
-      style={{ width: 600, maxWidth: 600 }}
-      initialValues={{ remember: true }}
-      onFinish={onFormSubmit}
-      onFinishFailed={console.log}
-      autoComplete="off"
-      layout="vertical"
+      onFinish={handleSubmit}
+      disabled={isProcess}
     >
       <UI.FieldEmail />
       <UI.FieldPhone />
       <UI.FieldPassword />
       <UI.FieldName />
-      <UI.Actions loginUrl={loginUrl} onLoginClick={onLoginClick} />
+      <UI.Actions
+        isProcess={isProcess}
+        loginUrl={loginUrl}
+        onLoginClick={onLoginClick}
+      />
     </Form>
   );
 });

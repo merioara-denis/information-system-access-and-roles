@@ -5,7 +5,7 @@ import * as Hooks from './hooks';
 import { ActionsProps } from './actions.types';
 
 export const Actions = React.memo<ActionsProps>((props) => {
-  const { loginUrl } = props;
+  const { isProcess, loginUrl } = props;
   const { handleLinkToLoginClick } = Hooks.useHandleLinkToLoginClick(props);
 
   return (
@@ -30,6 +30,8 @@ export const Actions = React.memo<ActionsProps>((props) => {
             data-testid="login-form__submit-button"
             type="primary"
             htmlType="submit"
+            iconPosition="end"
+            loading={isProcess}
           >
             Отправить
           </Button>

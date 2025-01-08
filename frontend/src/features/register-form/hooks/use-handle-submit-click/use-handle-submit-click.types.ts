@@ -1,9 +1,10 @@
-import { RegisterFormProps } from '../../register-form.types';
+import { RegisterFormProps, RegisterFormData } from '../../register-form.types';
 
 export type UseHandleSubmitClickArgs = Pick<RegisterFormProps, 'onFormSubmit'>;
 
 export type UseHandleSubmitClickResult = {
-  handleSubmit: React.FormEventHandler<HTMLFormElement>;
+  isProcess: boolean;
+  handleSubmit: (values: RegisterFormData) => void;
 };
 
 export type UseHandleSubmitClick = (
